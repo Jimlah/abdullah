@@ -13,11 +13,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table("blogs", function (Blueprint $table){
-            $table->id()->primary();
+        Schema::create("blogs", function (Blueprint $table){
+            $table->id();
             $table->string('title');
             $table->string('body')->nullable();
             $table->timestamp("published_at")->nullable();
+            $table->timestamps();
         });
     }
 
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::drop('blogs');
     }
 };

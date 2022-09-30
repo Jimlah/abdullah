@@ -11,7 +11,10 @@
 |
 */
 
-uses(Tests\TestCase::class, \Tests\CreatesApplication::class)->in('Feature', 'Unit');
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\CreatesApplication;
+
+uses(Tests\TestCase::class, CreatesApplication::class, RefreshDatabase::class)->in('Feature', 'Unit');
 
 /*
 |--------------------------------------------------------------------------

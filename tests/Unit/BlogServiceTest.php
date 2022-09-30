@@ -4,6 +4,7 @@ use App\Domain\Blogs\Models\Blog;
 use App\Domain\Blogs\Services\BlogService;
 use App\Support\Events\Published;
 use App\Support\Events\UnPublished;
+use Illuminate\Support\Facades\Event;
 
 test('publisher is able to publish', function () {
     Event::fake();
@@ -14,7 +15,7 @@ test('publisher is able to publish', function () {
     Event::assertDispatched(Published::class);
 });
 
-test('publisher is able to unpublish', function () {
+test('publisher is able to unpublished', function () {
     Event::fake();
     $blog = Blog::factory()->create(['published_at' => now()]);
     $blogService = (new BlogService($blog))->unpublish();
