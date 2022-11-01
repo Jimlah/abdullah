@@ -11,8 +11,11 @@
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
+        "livewire/livewire": "^2.10",
         "opcodesio/log-viewer": "^1.4",
-        "spatie/laravel-data": "^2.0"
+        "spatie/docker": "^1.9",
+        "spatie/laravel-data": "^2.0",
+        "spatie/laravel-event-sourcing": "^7.3"
     },
     "require-dev": {
         "brianium/paratest": "^6.6",
