@@ -11,6 +11,7 @@ class Todo extends Component
 {
 
     public bool $new = false;
+    public bool $edit = false;
 
     public \App\Models\Todo $todo;
 
@@ -46,14 +47,12 @@ class Todo extends Component
         if($this->todo->exists)
         {
             $this->submit();
-            $this->new = false;
         }
     }
 
     public function toggleMark($id)
     {
         $this->todo = \App\Models\Todo::find($id);
-
         $this->todo->toggleMark();
     }
 
@@ -66,6 +65,8 @@ class Todo extends Component
     {
         $this->validate();
         $this->todo->save();
+        $this->new = false;
+        $this->edit = false;
         $this->todo = new \App\Models\Todo();
     }
 

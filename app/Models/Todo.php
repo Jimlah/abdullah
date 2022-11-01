@@ -22,10 +22,10 @@ class Todo extends Model
     {
         if($this->is_marked)
         {
-            $this->update(['is_marked' => false]);
-            return true;
+            $this->is_marked = false;
+        } else {
+            $this->is_marked = false;
         }
-        $this->update(['is_marked' => true]);
-        return true;
+        return $this->save();
     }
 }

@@ -25,17 +25,19 @@
                         <input type="checkbox"/>
                     </div>
                     <div class="flex-grow h-12 flex items-center justify-start w-full">
-                        @if($td->id === $todo->id)
+                        @if($td->id === $todo->id && $edit)
                         <form class="w-full" wire:submit="submit">
                             <input type="text" wire:model.lazy="todo.text"
                                    class="w-full h-full px-3 py-2 focus:outline-none border border-blue-500"/>
                         </form>
                         @endif
-                        @if(!($td->id === $todo->id))
-                            <span class="w-full h-full px-3 py-2 inline-block">{{ $td->text }}</span>
+                        @if(!($td->id === $todo->id) && !$edit)
+                            <span class="w-full h-full px-3 py-2 inline-block"
+                                  @class(['line-through' => $td->is_marked])
+                            >{{ $td->text }}</span>
                         @endif
                     </div>
-                    <div class="flex-none px-2">
+                    <div class="flex-none px-2 space-x-2">
                         <button wire:click.prevent="toggleMark('{{ $td->id }}')">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                         </button>
