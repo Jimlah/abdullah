@@ -50,7 +50,7 @@ class Todo extends Component
         }
     }
 
-    public function mark($id)
+    public function toggleMark($id)
     {
         $this->todo = \App\Models\Todo::find($id);
 
