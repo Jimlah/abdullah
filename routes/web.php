@@ -17,3 +17,4 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 Route::get('/todo', \App\Http\Livewire\Todo::class)->name('todo');
+Route::get('/users', \App\Http\Controllers\IndexController::class)->name('users');

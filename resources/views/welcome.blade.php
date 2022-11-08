@@ -13,12 +13,53 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="antialiased" x-data>
-<div class="h-screen w-full flex flex-col items-center justify-center" >
-    <button class="px-4 py-2 bg-blue-600 text-white font-semibold text-sm tracking-wide rounded hover:bg-blue-800" x-modal:button.1>
-        Button
-    </button>
-    <div class="p-6 bg-white shadow-2xl bg-center rounded-md" x-modal:body.1 >
-        Modal
+<div class="h-screen w-full flex flex-col items-center justify-center">
+    <div x-data x-datatable='/users?' class="flex items-center flex-col">
+       <div>
+           <input x-datatable:search class="border"/>
+           <input x-datatable:filter="'user'" class="border">
+           <input x-datatable:filter="'last'" class="border">
+           <select x-datatable:perpage>
+               <option value="10">10</option>
+               <option value="15">15</option>
+               <option value="20">20</option>
+               <option value="25">25</option>
+           </select>
+           <div>
+               <template x-datatable:columns.list >
+                   <label>
+                       <span x-text='key'></span>
+                       <input type="checkbox" x-model="columns[key]" />
+                   </label>
+               </template>
+           </div>
+           <span x-datatable:currentpage ></span>
+       </div>
+        <table>
+            <thead x-datatable:header>
+            <tr>
+                <th x-datatable:header.column>Name</th>
+                <th x-datatable:header.column>Email</th>
+                <th x-datatable:header.column>Created At</th>
+            </tr>
+            </thead>
+            <tbody >
+            <template x-datatable:items="data?.data">
+                <tr>
+                    <td  x-show="columns[$el.cellIndex]" x-text="item.name"></td>
+                    <td x-show="columns[$el.cellIndex]" x-text="item.email"></td>
+                    <td x-show="columns[$el.cellIndex]" x-text="item.created_at"></td>
+                </tr>
+            </template>
+            </tbody>
+        </table>
+        <div>
+            <button class="p-2" x-datatable:prev>Prev</button>
+            <template x-datatable:items="data?.last_page">
+                <button class="p-2" x-on:click="setPageNumber(item)" x-text="item"></button>
+            </template>
+            <button class="p-2" x-datatable:next>Next</button>
+        </div>
     </div>
 </div>
 </body>
